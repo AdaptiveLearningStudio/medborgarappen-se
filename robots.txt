@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://adaptivelearningstudio.github.io/medborgarappen-se/sitemap.xml
+Sitemap: https://svensktmedborgarskap.nu/sitemap.xml
