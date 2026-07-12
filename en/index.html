@@ -390,4 +390,32 @@ const QT={"count": "Question {n} of 5", "next": "Next →", "passT": "Well done!
   if (aBtn) aBtn.addEventListener('click', function(){ setConsent('all'); });
 })();
 </script>
+<!-- Meta Pixel (consent-gated) -->
+<script>
+(function(){
+  var PIXEL_ID = '2049552535661827';
+
+  function loadPixel() {
+    if (window._metaPixelLoaded) return; // avoid double-loading
+    window._metaPixelLoaded = true;
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', PIXEL_ID);
+    fbq('track', 'PageView');
+  }
+
+  // Fire immediately if consent was already given on a previous visit
+  if (window.medborgarConsent === 'all') {
+    loadPixel();
+  }
+
+  // Fire immediately if the person accepts during THIS visit (no reload needed)
+  window.addEventListener('medborgarConsentChanged', function(e){
+    if (e.detail === 'all') loadPixel();
+  });
+})();
+</script>
 </body></html>
